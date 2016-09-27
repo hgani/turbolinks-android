@@ -34,6 +34,8 @@ public class InlineTurbolinksView extends TurbolinksView {
 
     @Override
     boolean attachWebView(WebView webView, boolean screenshotsEnabled, boolean pullToRefreshEnabled) {
+        if (webView.getParent() == this) return false;
+
         if (webView.getParent() instanceof TurbolinksView) {
             TurbolinksView previousTurbolinksView = (TurbolinksView) webView.getParent();
             previousTurbolinksView.removeView(webView);
